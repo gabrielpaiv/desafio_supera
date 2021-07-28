@@ -38,4 +38,7 @@ export const styles = StyleSheet.create({
         fontSize: 30,
         padding: 5,
     },
+    products: {
+        alignSelf: 'center'
+    }
 });
