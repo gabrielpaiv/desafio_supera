@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 
 import {
@@ -16,6 +17,7 @@ export type GameProps = {
     price: number;
     score: number;
     image: ImageSourcePropType;
+    description: string;
 }
 
 type Props = RectButtonProps & {
@@ -23,15 +25,19 @@ type Props = RectButtonProps & {
 }
 
 export function Game({ data, ...rest }: Props) {
+    const navigation = useNavigation();
+    function handleGameDetails(selectedGame: GameProps) {
+        navigation.navigate('Details', { selectedGame });
+    }
+    
     return (
-        <RectButton style={styles.container} {...rest}>
+        <RectButton style={styles.container} {...rest} onPress={()=>handleGameDetails(data)}>
             <Image
                 source={data.image}
-
                 style={styles.gameImg}
             />
-            <Text style={styles.gameTitle}>{data.name.length < 26 ? data.name : `${data.name.substring(0, 23)}...`}</Text>
-            <Text style={styles.gamePrice}>{data.price}</Text>
+            <Text style={styles.gameTitle}>{data.name.length < 23 ? data.name : `${data.name.substring(0, 20)}...`}</Text>
+            <Text style={styles.gamePrice}>R${data.price}</Text>
 
         </RectButton>
     );

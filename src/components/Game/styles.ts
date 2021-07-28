@@ -5,7 +5,6 @@ export const styles = StyleSheet.create({
     paddingVertical: '6%',
     width: 200,
     alignItems: 'center',
-    justifyContent: 'space-between',
     height: 250,
   },
   gameImg: {

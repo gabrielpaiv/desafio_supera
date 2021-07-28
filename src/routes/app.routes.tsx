@@ -7,22 +7,25 @@ import { Details } from '../screens/Details';
 import { Checkout } from '../screens/Checkout';
 import { Cart } from '../screens/Cart';
 
-const Stack = createStackNavigator();
+const { Navigator, Screen } = createStackNavigator();
 
 function Routes() {
     return (
         <NavigationContainer>
-            <Stack.Navigator>
-                <Stack.Screen
+            <Navigator
+                headerMode="none"
+            >
+                <Screen
                     name="Home"
                     component={Home}
                     options={{ headerShown: false }}
                 />
-                <Stack.Screen
+                <Screen
                     name="Details"
+
                     component={Details}
                 />
-            </Stack.Navigator>
+            </Navigator>
         </NavigationContainer>
     )
 }

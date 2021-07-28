@@ -15,15 +15,11 @@ import { styles } from './styles';
 import { Line } from '../../components/Line';
 import { CartButton } from '../../components/CartButton';
 import { theme } from '../../global/styles/theme';
-import { Game } from '../../components/Game';
+import { Game, GameProps } from '../../components/Game';
 
 
 
 export function Home() {
-    const navigation = useNavigation();
-    function handleGameDetails() {
-        navigation.navigate('Details');
-    }
     return (
         <View style={styles.container}>
             <View style={styles.logo}>
@@ -40,16 +36,13 @@ export function Home() {
                 />
             </View>
             <Line />
-            <Text style={styles.ordered}>Ordenado por: { }</Text>
-
             <FlatList
                 data={games}
                 keyExtractor={item => item.name}
                 numColumns={2}
-                renderItem={({ item }) => (
+                renderItem= {({ item }) => (
                     <Game
                         data={item}
-                        onPress={() => handleGameDetails()}
                     />
                 )}
                 style={styles.products}
