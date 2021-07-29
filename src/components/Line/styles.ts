@@ -7,6 +7,8 @@ export const styles = StyleSheet.create({
     height: 1,
     width: '90%',
     alignSelf: 'center',
-    borderRadius: 3
+    borderRadius: 3,
+    marginVertical: 10,
+    opacity: 0.3
   }
 });

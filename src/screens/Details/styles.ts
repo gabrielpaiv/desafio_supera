@@ -71,4 +71,12 @@ export const styles = StyleSheet.create({
         padding: 5,
         maxHeight: 400,
     },
+    modal:{
+        position: 'absolute',
+        left:50,
+        top: 500,
+        backgroundColor:'#123',
+        color: '#fff',
+        fontSize: 24,
+    }
 });

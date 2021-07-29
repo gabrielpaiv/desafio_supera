@@ -42,7 +42,7 @@ export function Header({ title, action }: Props) {
                     <View>
                         {action}
                     </View> :
-                    <View style={{ width: 25 }} />
+                    <View style={{ width: 40 }} />
             }
         </View>
     );

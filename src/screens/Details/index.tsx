@@ -4,9 +4,10 @@ import {
     ScrollView,
     Text,
     Image,
-    View
+    View,
+    Alert
 } from 'react-native';
-import { BorderlessButton, RectButton } from 'react-native-gesture-handler';
+import { RectButton } from 'react-native-gesture-handler';
 
 import { CartButton } from '../../components/CartButton';
 import { Footer } from '../../components/Footer';
@@ -16,6 +17,8 @@ import { Line } from '../../components/Line';
 import { theme } from '../../global/styles/theme';
 
 import { styles } from './styles';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { CART_ITENS } from '../../configs/database';
 
 type Params = {
     selectedGame: GameProps;
@@ -25,8 +28,15 @@ export function Details() {
     const route = useRoute();
     const { selectedGame } = route.params as Params;
 
-    function addToCart() {
-        // console.log("O item ", selectedGame.name, " foi adicionado ao carrinho!")
+    async function addToCart() {
+        const storage = await AsyncStorage.getItem(CART_ITENS);
+        const itens = storage ? JSON.parse(storage) : [];
+
+        await AsyncStorage.setItem(
+            CART_ITENS,
+            JSON.stringify([...itens, selectedGame])
+        );
+        Alert.alert('', `O item ${selectedGame.name} foi adicionado ao carrinho`);
     }
 
     return (
@@ -34,13 +44,12 @@ export function Details() {
             <Header
                 title="Detalhes do jogo"
                 action={
-                    <BorderlessButton onPress={addToCart}>
-                        <CartButton
-                            isAdd
-                            size={40}
-                            color={theme.colors.mat0}
-                        />
-                    </BorderlessButton>
+                    <CartButton
+                        isAdd
+                        size={40}
+                        color={theme.colors.mat0}
+                        onPress={addToCart}
+                    />
                 }
             />
             <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
@@ -72,7 +81,6 @@ export function Details() {
                         {selectedGame.description}
                     </Text>
                     <RectButton
-
                         style={styles.buyButton}
                     >
                         <Text style={styles.buyText}>Comprar</Text>

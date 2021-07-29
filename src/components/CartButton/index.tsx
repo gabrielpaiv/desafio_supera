@@ -5,16 +5,17 @@ import {
     TouchableOpacity
 } from 'react-native';
 import { styles } from './styles';
+import { RectButton, RectButtonProps } from 'react-native-gesture-handler';
 
-type Props = {
+type Props = RectButtonProps & {
     isAdd?: boolean,
     size?: number,
     color?: string,
 }
 
-export function CartButton({ isAdd=false, size, color }: Props) {
+export function CartButton({ isAdd=false, size, color, ...rest}: Props) {
     return (
-        <TouchableOpacity style={styles.container}>
+        <RectButton style={styles.container} {...rest}>
             {
                 isAdd ?
                 <MaterialIcons
@@ -29,6 +30,6 @@ export function CartButton({ isAdd=false, size, color }: Props) {
                     color={color}
                 />
             }
-        </TouchableOpacity>
+        </RectButton>
     );
 }
