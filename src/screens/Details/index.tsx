@@ -1,13 +1,13 @@
-import { NavigationProp, ParamListBase, useRoute } from '@react-navigation/native';
 import React from 'react';
-
+import { useRoute } from '@react-navigation/native';
 import {
     ScrollView,
     Text,
     Image,
     View
 } from 'react-native';
-import { BorderlessButton } from 'react-native-gesture-handler';
+import { BorderlessButton, RectButton } from 'react-native-gesture-handler';
+
 import { CartButton } from '../../components/CartButton';
 import { Footer } from '../../components/Footer';
 import { GameProps } from '../../components/Game';
@@ -20,11 +20,8 @@ import { styles } from './styles';
 type Params = {
     selectedGame: GameProps;
 }
-type Props = {
-    navigation: NavigationProp<ParamListBase>;
-}
 
-export function Details({ navigation }: Props) {
+export function Details() {
     const route = useRoute();
     const { selectedGame } = route.params as Params;
 
@@ -46,27 +43,40 @@ export function Details({ navigation }: Props) {
                     </BorderlessButton>
                 }
             />
-            <ScrollView style={styles.container}>
+            <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
                 <Image
                     source={selectedGame.image}
                     style={styles.gameImage}
                     resizeMode="cover"
                 />
                 <View style={styles.head}>
-                    <Text style={styles.gamePrice}>
-                        R${selectedGame.price}
-                    </Text>
-                    <Text style={styles.gameTitle}>
-                        {selectedGame.name}
-                    </Text>
+                    <View>
+                        <Text style={styles.gamePrice}>
+                            R${selectedGame.price}
+                        </Text>
+                        <Text style={styles.gameTitle}>
+                            {selectedGame.name}
+                        </Text>
+                    </View>
+                    <View style={styles.scoreView}>
+                        <Text style={styles.gameScore}>
+                            Score: {selectedGame.score}
+                        </Text>
+                    </View>
                 </View>
                 <View style={styles.body}>
-                    <Text style={styles.gameScore}>
-                        {selectedGame.score}
+                    <Text style={styles.descTitle}>
+                        Sobre:
                     </Text>
                     <Text style={styles.gameDescription}>
                         {selectedGame.description}
                     </Text>
+                    <RectButton
+
+                        style={styles.buyButton}
+                    >
+                        <Text style={styles.buyText}>Comprar</Text>
+                    </RectButton>
                 </View>
                 <Line />
                 <Footer text={"Você pode gostar"} />

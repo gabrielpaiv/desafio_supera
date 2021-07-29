@@ -1,4 +1,5 @@
-import { useNavigation } from '@react-navigation/native';
+import { ParamListBase, useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import React from 'react';
 
 import {
@@ -24,14 +25,19 @@ type Props = RectButtonProps & {
     data: GameProps;
 }
 
+type Params = {
+    navigation: StackNavigationProp<ParamListBase>;
+}
+
+
 export function Game({ data, ...rest }: Props) {
     const navigation = useNavigation();
     function handleGameDetails(selectedGame: GameProps) {
-        navigation.navigate('Details', { selectedGame });
+        navigation.push('Details', { selectedGame });
     }
-    
+
     return (
-        <RectButton style={styles.container} {...rest} onPress={()=>handleGameDetails(data)}>
+        <RectButton style={styles.container} {...rest} onPress={() => handleGameDetails(data)}>
             <Image
                 source={data.image}
                 style={styles.gameImg}

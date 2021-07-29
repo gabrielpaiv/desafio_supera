@@ -6,7 +6,6 @@ import {
     FlatList,
     TouchableOpacity,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import { games } from '../../utils/assets';
 
 import ArrowDownSvg from '../../assets/arrow-down-icon.svg';
@@ -15,11 +14,12 @@ import { styles } from './styles';
 import { Line } from '../../components/Line';
 import { CartButton } from '../../components/CartButton';
 import { theme } from '../../global/styles/theme';
-import { Game, GameProps } from '../../components/Game';
+import { Game } from '../../components/Game';
 
 
 
 export function Home() {
+    //Parei aqui => games.sort((a,b)=> a.name.localeCompare(b.name))
     return (
         <View style={styles.container}>
             <View style={styles.logo}>
@@ -40,7 +40,8 @@ export function Home() {
                 data={games}
                 keyExtractor={item => item.name}
                 numColumns={2}
-                renderItem= {({ item }) => (
+
+                renderItem={({ item }) => (
                     <Game
                         data={item}
                     />

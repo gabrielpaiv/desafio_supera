@@ -18,12 +18,18 @@ function Routes() {
                 <Screen
                     name="Home"
                     component={Home}
-                    options={{ headerShown: false }}
                 />
                 <Screen
                     name="Details"
-
                     component={Details}
+                />
+                <Screen
+                    name="Cart"
+                    component={Cart}
+                />
+                <Screen
+                    name="Checkout"
+                    component={Checkout}
                 />
             </Navigator>
         </NavigationContainer>

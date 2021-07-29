@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { BorderlessButton } from 'react-native-gesture-handler';
 import { View, Text } from 'react-native';
-import { Feather } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
 import { theme } from '../../global/styles/theme';
 import { styles } from './styles';
@@ -16,27 +16,33 @@ export function Header({ title, action }: Props) {
 
     const navigation = useNavigation();
 
-    function handleGoBack() {
-        navigation.goBack();
-    }
     return (
         <View style={styles.container}>
-            <BorderlessButton onPress={handleGoBack}>
-                <Feather
-                    name="arrow-left"
-                    size={24}
+            <BorderlessButton onPress={() => navigation.goBack()}>
+                <Ionicons
+                    name="arrow-back"
+                    size={40}
                     color={theme.colors.mat20}
                 />
             </BorderlessButton>
-            <Text style={styles.name}>
-                {title}
-            </Text>
+            <BorderlessButton onPress={() => navigation.navigate('Home')}>
+                <Ionicons
+                    name="home"
+                    size={40}
+                    color={theme.colors.mat20}
+                />
+            </BorderlessButton>
+            <View>
+                <Text style={styles.name}>
+                    {title}
+                </Text>
+            </View>
             {
                 action ?
                     <View>
                         {action}
                     </View> :
-                    <View style={{ width: 24 }} />
+                    <View style={{ width: 25 }} />
             }
         </View>
     );

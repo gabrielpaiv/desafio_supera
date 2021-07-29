@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { lessOrEq } from 'react-native-reanimated';
 import { theme } from '../../global/styles/theme';
 
 export const styles = StyleSheet.create({
@@ -8,28 +9,66 @@ export const styles = StyleSheet.create({
         backgroundColor: theme.colors.mat0,
     },
     gameImage: {
-        width: '100%',
-        paddingTop: 50
+        width: 410,
+        height: 410,
     },
     gamePrice: {
-        backgroundColor: '#fff'
+        color: theme.colors.pricing,
+        fontSize: 30
     },
     gameTitle: {
-        backgroundColor: '#777'
+        fontSize: 28,
+        paddingTop: 0,
+        color: theme.colors.mat90,
+        width: 300,
+    },
+    scoreView: {
+        backgroundColor: theme.colors.pricing,
+        width: 100,
+        height: 50,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderColor: theme.colors.heading,
+        borderWidth: 2,
+        borderRadius: 15,
+        margin: 5,
+        position: 'absolute',
+        left: 300,
+        top: 25
     },
     gameScore: {
-        backgroundColor: '#987654'
+        color: theme.colors.heading
+    },
+    descTitle: {
+        paddingTop: 20,
+        fontSize: 25,
+        color: theme.colors.text,
+        opacity: 0.5,
     },
     gameDescription: {
-        backgroundColor: '#555'
+        fontSize: 20,
+        color: theme.colors.text,
+        opacity: 0.7,
     },
     buyButton: {
-        backgroundColor: '#999'
+        margin: 25,
+        backgroundColor: theme.colors.pricing,
+        width: 350,
+        height: 50,
+        borderRadius: 20
+    },
+    buyText: {
+        color: theme.colors.text,
+        fontSize: 30,
+        alignSelf: 'center'
     },
     head: {
+        flexDirection: 'row',
         padding: 5,
+        maxHeight: 150,
     },
     body: {
         padding: 5,
+        maxHeight: 400,
     },
 });
