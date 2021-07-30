@@ -1,5 +1,5 @@
 import React from 'react';
-import { useRoute } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import {
     ScrollView,
     Text,
@@ -28,7 +28,9 @@ export function Details() {
     const route = useRoute();
     const { selectedGame } = route.params as Params;
 
-    async function addToCart() {
+    const navigation = useNavigation();
+
+    async function addToCart(toCart: boolean) {
         const storage = await AsyncStorage.getItem(CART_ITENS);
         const itens = storage ? JSON.parse(storage) : [];
 
@@ -36,7 +38,20 @@ export function Details() {
             CART_ITENS,
             JSON.stringify([...itens, selectedGame])
         );
-        Alert.alert('', `O item ${selectedGame.name} foi adicionado ao carrinho`);
+        toCart ?
+            Alert.alert(
+                '',
+                `O item ${selectedGame.name} foi adicionado ao carrinho`,
+                [{
+                    text: "Ok",
+                    onPress: () => goToCart()
+                }]
+            ) :
+            Alert.alert('', `O item ${selectedGame.name} foi adicionado ao carrinho`);
+    }
+
+    function goToCart() {
+        navigation.navigate('Cart');
     }
 
     return (
@@ -48,7 +63,7 @@ export function Details() {
                         isAdd
                         size={40}
                         color={theme.colors.mat0}
-                        onPress={addToCart}
+                        onPress={() => addToCart(false)}
                     />
                 }
             />
@@ -82,6 +97,7 @@ export function Details() {
                     </Text>
                     <RectButton
                         style={styles.buyButton}
+                        onPress={() => addToCart(true)}
                     >
                         <Text style={styles.buyText}>Comprar</Text>
                     </RectButton>

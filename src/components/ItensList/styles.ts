@@ -1,9 +1,10 @@
 import { StyleSheet } from 'react-native';
+import { theme } from '../../global/styles/theme';
 
 export const styles = StyleSheet.create({
   container: {
-    flexDirection:'row',
-    width: '100%',
+    flexDirection: 'row',
+    width: '80%',
     alignItems: 'center',
     height: 100,
   },
@@ -17,6 +18,22 @@ export const styles = StyleSheet.create({
   gamePrice: {
     position: 'absolute',
     right: 0,
+    top: 40,
     fontSize: 16,
+  },
+  removeButton: {
+    width: 40,
+    height: 40,
+    right: 0,
+    top: 0,
+    position: 'absolute',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  remove: {
+    backgroundColor: theme.colors.matA70,
+    width: 20,
+    height: 5,
+    borderRadius: 10,
   }
 });

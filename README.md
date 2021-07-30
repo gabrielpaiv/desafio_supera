@@ -5,7 +5,7 @@
 
 - [X] Os produtos devem ser renderizados dinamicamente através do products.json com suas imagens em assets;
 - [X] Os valores exibidos no checkout (frete, subtotal e total) devem ser calculados dinamicamente;
-- [ ] O usuário poderá adicionar e remover produtos do carrinho;
+- [X] O usuário poderá adicionar e remover produtos do carrinho;
 - [X] O usuário poderá ordenar os produtos por preço, popularidade (score) e ordem alfabética; (bug: ordem descrescente)
 - [X] A cada produto adicionado, deve-se somar R$ 10,00 ao frete;
 - [X] O frete é grátis para compras acima de R$ 250,00;

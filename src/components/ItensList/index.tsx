@@ -21,13 +21,18 @@ export function ItensList({ data, ...rest }: Props) {
         navigation.push('Details', { selectedGame });
     }
     return (
-        <RectButton style={styles.container} {...rest} onPress={() => handleGameDetails(data)}>
-            <Image
-                source={data.image}
-                style={styles.gameImg}
-            />
-            <Text style={styles.gameTitle}>{data.name}</Text>
+        <>
+            <RectButton style={styles.container} onPress={() => handleGameDetails(data)}>
+                <Image
+                    source={data.image}
+                    style={styles.gameImg}
+                />
+                <Text style={styles.gameTitle}>{data.name}</Text>
+            </RectButton>
+            <RectButton style={styles.removeButton} {...rest}>
+                <View style={styles.remove} />
+            </RectButton>
             <Text style={styles.gamePrice}>R${data.price}</Text>
-        </RectButton>
+        </>
     );
 }
